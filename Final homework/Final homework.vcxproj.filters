@@ -41,7 +41,7 @@
     <ClInclude Include="CommonFun.h">
       <Filter>头文件</Filter>
     </ClInclude>
-    <ClInclude Include="DataManagement.h">
+    <ClInclude Include="Setting.h">
       <Filter>头文件</Filter>
     </ClInclude>
   </ItemGroup>

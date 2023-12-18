@@ -3,9 +3,12 @@
 #include "CommonFun.h"
 #include "ShowPage.h"
 
+
 extern int Page;
 extern char key;
 extern int InputError;
+extern int RankPage;
+
 
 // 主页面控制程序
 void HomeControl()
@@ -64,6 +67,12 @@ void RankingListControl()
 	InputChar();
 	switch (key)
 	{
+		case '1':
+			RankPage--;// 上一页
+			break;
+		case '2':
+			RankPage++;// 下一页
+break;
 		case '0':
 			Page = 1;// 返回主页面
 			break;
@@ -85,6 +94,12 @@ void SettingControl()
 			break;
 		case '2':
 			Page = 12;// 用户注销
+			break;
+		case '3':
+			Page = 13;// 打开游戏说明页面
+			break;
+		case '4':
+			Page = 14;// 打开游戏设置页面
 			break;
 		case '5':
 			OpenGameFile();

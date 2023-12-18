@@ -4,9 +4,11 @@
 #include <stdio.h>
 #include<windows.h>
 #pragma warning(disable:4996)
+
 extern char key;
 extern int InputError;
 extern int len1, len2;   // 用于改变输出时的空格
+extern User User1, User2; // 用于记录用户信息
 
 // 输入字符
 void InputChar()
@@ -15,11 +17,7 @@ void InputChar()
     return;
 }
 
-// 0. 退出游戏
-void ExitGame()
-{
-    exit(0);
-}
+
 
 // 打印输入错误
 void ShowInputError()
@@ -67,3 +65,5 @@ void ChangeLen(int a, int b)
 
     return;
 }
+
+

@@ -3,6 +3,7 @@
 #include "PageControl.h"
 #include "CommonFun.h"
 #include "UserControl.h"
+#include "Setting.h"
 
 extern int Page;
 extern int InputError;
@@ -65,6 +66,13 @@ void JudgePage()
 		break;
 	case 12:
 		ShowLogoutSuccess(); // 展示注销成功
+		break;
+	case 13:
+		ShowGameInstructions(); // 展示游戏说明
+		break;
+	case 14:
+		ShowGameSetting(); // 展示游戏设置
+		GameSettingControl(); // 游戏设置页面控制程序
 		break;
 	default:
 		

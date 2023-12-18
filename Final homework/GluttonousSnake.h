@@ -5,6 +5,10 @@
 #include <windows.h>
 #include <time.h>
 
+
+// 记得改一下，不要让食物生成到边上
+
+
 // 墙的宽度与高度
 #define WIDTH 21
 #define HEIGHT 69

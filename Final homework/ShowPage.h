@@ -1,25 +1,26 @@
 #pragma once
 #include <stdio.h>
 
-extern int HighestScore; // 最高得分
-extern User User1,User2; // 用户1和用户2
-extern int len1, len2;   // 用于改变输出时的空格
 
-// 展示水平线
+extern int HighestScore; // 最高得分
+extern User User1; // 用户1
+extern int len1, len2;   // 用于改变输出时的空格
+extern int aaa;
+extern int Page; // 页面
+
+// 展示水平线【已完成】
 void ShowHorizontal()
 {
     printf("\t■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■\n");
     return;
 }
-
-// 展示空行
+// 展示空行【已完成】
 void ShowBlankLine()
 {
     printf("\t■                                                                   ■\n");
 	return;
 }
-
-// 展示主页面
+// 展示主页面【已完成】
 void ShowHomePage()
 {
     system("cls"); // 清屏
@@ -93,36 +94,7 @@ void ShowNewGame()
     return;
 }
 
-// 展示排行榜页面
-void ShowRankingList()
-{
-	system("cls"); // 清屏
-    printf("\n");
-    printf("\t■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■\n");
-    printf("\t■                                                                   ■\n");
-    printf("\t■                      =========排行榜=========                     ■\n");
-    printf("\t■                                                                   ■\n");
-    printf("\t■ ----------------------------------------------------------------- ■\n");
-    printf("\t■    排名                      用户名                  分数         ■\n");
-    printf("\t■     01.                                                           ■\n");
-    printf("\t■     02.                                                           ■\n");
-    printf("\t■     03.                                                           ■\n");
-    printf("\t■     04.                                                           ■\n");
-    printf("\t■     05.                                                           ■\n");
-    printf("\t■     06.                                                           ■\n");
-    printf("\t■     07.                                                           ■\n");
-    printf("\t■     08.                                                           ■\n");
-    printf("\t■     09.                                                           ■\n");
-    printf("\t■     10.                                                           ■\n");
-    printf("\t■ ----------------------------------------------------------------- ■\n");
-    printf("\t■    1.《 上一页                                    2. 下一页 》    ■\n");
-    printf("\t■                     ==按数字“0”返回上一页面==                   ■\n");
-    printf("\t■                                                                   ■\n");
-    printf("\t■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■\n");
-    printf("\t");
 
-    return;
-}
 
 // 展示设置页面
 void ShowSetting()
@@ -162,27 +134,27 @@ void ShowAbout()
 {
     system("cls"); // 清屏
     printf("\n");
-    printf("\t■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■\n");
-    printf("\t■                                                                   ■\n");
+    ShowHorizontal();
+    ShowBlankLine();
     printf("\t■                         ======关于======                          ■\n");
-    printf("\t■                                                                   ■\n");
-    printf("\t■               当前游戏开始时间 2023年12月16日 14:30               ■\n");
+    ShowBlankLine();
+    printf("\t■               当前游戏创建时间 2023年12月16日 14:30               ■\n");
     printf("\t■               当前游戏结束时间 2023年12月16日 14:30               ■\n");
     printf("\t■                                                                   ■\n");
-    printf("\t■               目前已上传到               ■\n");
+    printf("\t■     目前已上传到 https://github.com/sakurakugu/GluttonousSnake    ■\n");
     printf("\t■                                                                   ■\n");
-    printf("\t■                                                                   ■\n");// 关于作者
-    printf("\t■                                                                   ■\n");
-    printf("\t■                                                                   ■\n");
+    printf("\t■               这是我大一上程序设计实践课的期末作业                ■\n");// 关于作者
     printf("\t■                                                                   ■\n");
     printf("\t■                                                                   ■\n");
     printf("\t■                                                                   ■\n");
     printf("\t■                                                                   ■\n");
+    printf("\t■                                                                   ■\n");
+    ShowBlankLine();
     printf("\t■                       0. 返回主页面                               ■\n");
-    printf("\t■                                                                   ■\n");
-    printf("\t■                      ==按数字键 “0~9” 来选择==                  ■\n");
-    printf("\t■                                                                   ■\n");
-    printf("\t■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■\n");
+    ShowBlankLine();
+    printf("\t■                   ==按数字键 “0~9” 来选择==                       ■\n");
+    ShowBlankLine();
+    ShowHorizontal();
     printf("\t");
 
     return;
@@ -199,7 +171,7 @@ void ShowSingleMode()
     printf("\t■                                                                   ■\n");
     printf("\t■                                                                   ■\n");
     printf("\t■                              最高得分：%d                         ■\n", HighestScore);
-    printf("\t■                              当前得分：%d                         ■\n", Score);
+    printf("\t■                              当前得分：%d                         ■\n", User1.score);
     printf("\t■                                                                   ■\n");
     printf("\t■                        1. 简单模式                                ■\n");//速度500
     printf("\t■                                                                   ■\n");
@@ -231,7 +203,7 @@ void ShowDoubleMode()
     printf("\t■                                                                   ■\n");
     printf("\t■                                                                   ■\n");
     printf("\t■                              最高得分：%d                         ■\n", HighestScore);
-    printf("\t■                              当前得分：%d                         ■\n", Score);
+    printf("\t■                              当前得分：%d                         ■\n", User1.score);
     printf("\t■                                                                   ■\n");
     printf("\t■                        1. 简单模式                                ■\n");//速度500
     printf("\t■                                                                   ■\n");
@@ -283,7 +255,6 @@ void ShowUser2Login()
 }
 
 
-// 展示用户登录页面
 
 
 // 展示是否继续登录页面
@@ -315,34 +286,7 @@ void ShowContinueLogin()
 	return;
 }
 
-// 展示用户注销页面
-void ShowUserLogout()
-{
-	system("cls"); // 清屏
-    printf("\n");
-    printf("\t■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■\n");
-    printf("\t■                                                                   ■\n");
-    printf("\t■                       ======用户注销======                        ■\n");
-    printf("\t■                                                                   ■\n");
-    printf("\t■                                                                   ■\n");
-    printf("\t■                                                                   ■\n");
-    printf("\t■                                                                   ■\n");
-    printf("\t■                                                                   ■\n");
-    printf("\t■                        是否继续注销：                             ■\n");
-    printf("\t■                                                                   ■\n");
-    printf("\t■                        1. 是   退出登录                           ■\n");
-    printf("\t■                                                                   ■\n");
-    printf("\t■                        2. 否   返回上一页面                       ■\n");
-    printf("\t■                                                                   ■\n");
-    printf("\t■                                                                   ■\n");
-    printf("\t■                                                                   ■\n");
-    printf("\t■                                                                   ■\n");
-    printf("\t■                      ==按数字键 “0~9” 来选择==                  ■\n");
-    printf("\t■                                                                   ■\n");
-    printf("\t■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■\n");
-    printf("\t");
-    return;
-}
+
 
 // 展示打开游戏说明页面
 void ShowGameInstructions()
@@ -371,133 +315,13 @@ void ShowGameInstructions()
     printf("\t■                                                                   ■\n");
     printf("\t■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■\n");
     printf("\t");
-
-    return;
-}
-
-// 展示打开游戏设置页面
-void ShowGameSetting()
-{
-	system("cls"); // 清屏
-    printf("\n");
-    printf("\t■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■\n");
-    printf("\t■                                                                   ■\n");
-    printf("\t■                       ======游戏设置======                        ■\n");
-    printf("\t■                                                                   ■\n");
-    printf("\t■           1. 改变蛇移动的速度的倍数（速度=原速度×倍数）          ■\n");
-    printf("\t■                                                                   ■\n");
-    printf("\t■           2. 改变刺球每秒生成的数量                               ■\n");
-    printf("\t■                                                                   ■\n");
-    printf("\t■           3. 碰到墙是否死亡                                       ■\n");
-    printf("\t■                                                                   ■\n");
-    printf("\t■           4. 修改用户名                                           ■\n");
-    printf("\t■                                                                   ■\n");
-    printf("\t■           5. 修改密码                                             ■\n");
-    printf("\t■                                                                   ■\n");
-    printf("\t■           6. 更改按键                                             ■\n");
-    printf("\t■                                                                   ■\n");
-    printf("\t■                        0. 返回上一页面                            ■\n");
-    printf("\t■                                                                   ■\n");
-    printf("\t■                      ==按数字键 “0~9” 来选择==                  ■\n");
-    printf("\t■                                                                   ■\n");
-    printf("\t■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■\n");
-    printf("\t");
-
+    
+    aaa=scanf("%d", &aaa);
+    Page = 4;
     return;
 }
 
 
-// 展示修改用户名页面
-void ShowChangeUserName()
-{
-	system("cls"); // 清屏
-    printf("\n");
-    printf("\t■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■\n");
-    printf("\t■                                                                   ■\n");
-    printf("\t■                      ======修改用户名======                       ■\n");
-    printf("\t■                                                                   ■\n");
-    printf("\t■                                                                   ■\n");
-    printf("\t■                                                                   ■\n");
-    printf("\t■                   原用户名：                                      ■\n");
-    printf("\t■                                                                   ■\n");
-    printf("\t■                                                                   ■\n");
-    printf("\t■                   输入要更改的用户名：                            ■\n");
-    printf("\t■                                                                   ■\n");
-    printf("\t■                                                                   ■\n");
-    printf("\t■                                                                   ■\n");
-    printf("\t■                                                                   ■\n");
-    printf("\t■                        1. 下一步                                  ■\n");
-    printf("\t■                                                                   ■\n");
-    printf("\t■                        0. 返回上一页面                            ■\n");
-    printf("\t■                                                                   ■\n");
-    printf("\t■                      ==按数字键 “0~9” 来选择==                  ■\n");
-    printf("\t■                                                                   ■\n");
-    printf("\t■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■\n");
-    printf("\t");
-
-    return;
-}
-
-// 展示修改密码页面
-void ShowChangePassword()
-{
-	system("cls"); // 清屏
-    printf("\n");
-    printf("\t■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■\n");
-    printf("\t■                                                                   ■\n");
-    printf("\t■                       ======修改密码======                        ■\n");
-    printf("\t■                                                                   ■\n");
-    printf("\t■                                                                   ■\n");
-    printf("\t■                                                                   ■\n");
-    printf("\t■                   原密码：                                        ■\n");
-    printf("\t■                                                                   ■\n");
-    printf("\t■                   输入要更改的密码：                              ■\n");
-    printf("\t■                                                                   ■\n");
-    printf("\t■                   再次输入要更改的密码：                          ■\n");
-    printf("\t■                                                                   ■\n");
-    printf("\t■                                                                   ■\n");
-    printf("\t■                                                                   ■\n");
-    printf("\t■                        1. 下一步                                  ■\n");
-    printf("\t■                                                                   ■\n");
-    printf("\t■                        0. 返回上一页面                            ■\n");
-    printf("\t■                                                                   ■\n");
-    printf("\t■                      ==按数字键 “0~9” 来选择==                  ■\n");
-    printf("\t■                                                                   ■\n");
-    printf("\t■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■\n");
-    printf("\t");
-
-    return;
-}
-// 展示更改按键页面
-void ShowChangeKey()
-{
-	system("cls"); // 清屏
-    printf("\n");
-    printf("\t■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■\n");
-    printf("\t■                                                                   ■\n");
-    printf("\t■                      ======更改按键======                         ■\n");
-    printf("\t■                                                                   ■\n");
-    printf("\t■        用户A：                                                    ■\n");
-    printf("\t■               1. 向上                                             ■\n");
-    printf("\t■               2. 向下                                             ■\n");
-    printf("\t■               3. 向左                                             ■\n");
-    printf("\t■               4. 向右                                             ■\n");
-    printf("\t■                                                                   ■\n");
-    printf("\t■        用户B：                                                    ■\n");
-    printf("\t■               1. 向上                                             ■\n");
-    printf("\t■               2. 向下                                             ■\n");
-    printf("\t■               3. 向左                                             ■\n");
-    printf("\t■               4. 向右                                             ■\n");
-    printf("\t■                                                                   ■\n");
-    printf("\t■                        0. 返回上一页面                            ■\n");
-    printf("\t■                                                                   ■\n");
-    printf("\t■                      ==按数字键 “0~9” 来选择==                  ■\n");
-    printf("\t■                                                                   ■\n");
-    printf("\t■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■\n");
-    printf("\t");
-
-    return;
-}
 // 展示游戏结束页面
 void ShowGameEnd()
 {
@@ -590,33 +414,35 @@ void ShowIsChange()
     return;
 }
 
-// 展示错误页面
+// 展示错误页面，用不上，所以懒得写了【已完成】
 void ShowError()
 {
 	system("cls"); // 清屏
     printf("\n");
-    printf("\t■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■\n");
-    printf("\t■                                                                   ■\n");
+    ShowHorizontal();
+    ShowBlankLine();
     printf("\t■                     ======锟斤拷锟斤拷======                      ■\n");
-    printf("\t■                                                                   ■\n");
-    printf("\t■                                                                   ■\n");
-    printf("\t■                                                                   ■\n");
-    printf("\t■                                                                   ■\n");
-    printf("\t■                                                                   ■\n");
-    printf("\t■                                                                   ■\n");
-    printf("\t■                                                                   ■\n");// 一个大写的Error
-    printf("\t■                                                                   ■\n");
-    printf("\t■                                                                   ■\n");
-    printf("\t■                                                                   ■\n");
-    printf("\t■                                                                   ■\n");
-    printf("\t■                                                                   ■\n");
-    printf("\t■                                                                   ■\n");
-    printf("\t■                       0. 返回主页面                               ■\n");
-    printf("\t■                                                                   ■\n");
-    printf("\t■                      ==按数字键 “0~9” 来选择==                  ■\n");
-    printf("\t■                                                                   ■\n");
-    printf("\t■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■\n");
+    ShowBlankLine();
+    ShowBlankLine();
+    printf("\t■   ■■■■■  ■■■■     ■■■■       ■■■■    ■■■■    ■\n");
+    printf("\t■   ■          ■      ■   ■      ■   ■        ■  ■      ■  ■\n");
+    printf("\t■   ■          ■      ■   ■      ■   ■        ■  ■      ■  ■\n");
+    printf("\t■   ■          ■      ■   ■      ■   ■        ■  ■      ■  ■\n");
+    printf("\t■   ■■■■■  ■■■■     ■■■■     ■        ■  ■■■■    ■\n");// 一个大写的Error
+    printf("\t■   ■          ■  ■       ■  ■       ■        ■  ■  ■      ■\n");
+    printf("\t■   ■          ■    ■     ■    ■     ■        ■  ■    ■    ■\n");
+    printf("\t■   ■          ■      ■   ■      ■   ■        ■  ■      ■  ■\n");
+    printf("\t■   ■■■■■  ■      ■   ■      ■     ■■■■    ■      ■  ■\n");
+    ShowBlankLine();
+    ShowBlankLine();
+    printf("\t■                        0. 返回主页面                              ■\n");
+    ShowBlankLine();
+    printf("\t■                     ==按数字键 “0~9” 来选择==                   ■\n");
+    ShowBlankLine();
+    ShowHorizontal();
     printf("\t");
 
+    scanf("%d", &aaa);
+    Page = 1;
     return;
 }
