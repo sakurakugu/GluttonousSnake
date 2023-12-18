@@ -1,0 +1,9 @@
+﻿  main.c
+  UserControl.h
+UserControl.obj : error LNK2001: 无法解析的外部符号 "int UserLen1" (?UserLen1@@3HA)
+    已定义且可能匹配的符号上的提示:
+      UserLen1
+UserControl.obj : error LNK2001: 无法解析的外部符号 "int UserLen2" (?UserLen2@@3HA)
+    已定义且可能匹配的符号上的提示:
+      UserLen2
+E:\elric\Programming\study\C or C++\homeworks\Final homework\x64\Debug\Final homework.exe : fatal error LNK1120: 2 个无法解析的外部命令
