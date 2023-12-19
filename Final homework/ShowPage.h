@@ -111,17 +111,17 @@ void ShowSetting()
     printf("\t■                                                                   ■\n");
     printf("\t■                        2. 用户注销                                ■\n");
     printf("\t■                                                                   ■\n");
-    printf("\t■                        3. 打开游戏说明页面                        ■\n");//还有带有控制台作弊代码功能
+    printf("\t■                        3. 打开游戏说明页面                        ■\n");
     printf("\t■                                                                   ■\n");
-    printf("\t■                        4. 打开游戏设置                            ■\n");// 还可以改变蛇的颜色，食物的颜色，地图的颜色
+    printf("\t■                        4. 打开游戏设置                            ■\n");
     printf("\t■                                                                   ■\n");
-    printf("\t■                        5. 在文件夹中打开存档                      ■\n");
+    printf("\t■                        5. 打开存档                                ■\n");
     printf("\t■                                                                   ■\n");
     printf("\t■                                                                   ■\n");
     printf("\t■                                                                   ■\n");
     printf("\t■                        0. 返回上一页面                            ■\n");
     printf("\t■                                                                   ■\n");
-    printf("\t■                      ==按数字键 “0~9” 来选择==                  ■\n");
+    printf("\t■                      ==按数字键 “0~9” 来选择==                    ■\n");
     printf("\t■                                                                   ■\n");
     printf("\t■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■\n");
     printf("\t");
@@ -173,17 +173,17 @@ void ShowSingleMode()
     printf("\t■                              最高得分：%d                         ■\n", HighestScore);
     printf("\t■                              当前得分：%d                         ■\n", User1.score);
     printf("\t■                                                                   ■\n");
-    printf("\t■                        1. 简单模式                                ■\n");//速度500
+    printf("\t■                        1. 简单模式                                ■\n");//
     printf("\t■                                                                   ■\n");
-    printf("\t■                        2. 普通模式                                ■\n");//速度300，会生成小刺球，碰到会-2长度，生成10s后消失
+    printf("\t■                        2. 普通模式                                ■\n");//会生成小刺球，碰到会-2长度，生成10s后消失
     printf("\t■                                                                   ■\n");
-    printf("\t■                        3. 困难模式                                ■\n");//速度300，会生成小刺球，碰到会死亡，并有一个npc
+    printf("\t■                        3. 困难模式                                ■\n");//会生成小刺球，碰到会死亡，并有一个npc
     printf("\t■                                                                   ■\n");
     printf("\t■                                                                   ■\n");
     printf("\t■                                                                   ■\n");
     printf("\t■                        0. 返回主页面                              ■\n");
     printf("\t■                                                                   ■\n");
-    printf("\t■                      ==按数字键 “0~9” 来选择==                  ■\n");
+    printf("\t■                      ==按数字键 “0~9” 来选择==                    ■\n");
     printf("\t■                                                                   ■\n");
     printf("\t■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■\n");
     printf("\t");
@@ -205,11 +205,11 @@ void ShowDoubleMode()
     printf("\t■                              最高得分：%d                         ■\n", HighestScore);
     printf("\t■                              当前得分：%d                         ■\n", User1.score);
     printf("\t■                                                                   ■\n");
-    printf("\t■                        1. 简单模式                                ■\n");//速度500
+    printf("\t■                        1. 简单模式                                ■\n");//
     printf("\t■                                                                   ■\n");
-    printf("\t■                        2. 普通模式                                ■\n");//速度300，会生成小刺球，碰到会-2长度，生成10s后消失
+    printf("\t■                        2. 普通模式                                ■\n");//会生成小刺球，碰到会-2长度，生成10s后消失
     printf("\t■                                                                   ■\n");
-    printf("\t■                        3. 困难模式                                ■\n");//速度300，会生成小刺球，碰到会死亡，吃到小光球会清屏
+    printf("\t■                        3. 困难模式                                ■\n");//会生成小刺球，碰到会死亡，吃到小光球会清屏
     printf("\t■                                                                   ■\n");
     printf("\t■                                                                   ■\n");
     printf("\t■                                                                   ■\n");
@@ -414,6 +414,8 @@ void ShowIsChange()
     return;
 }
 
+
+
 // 展示错误页面，用不上，所以懒得写了【已完成】
 void ShowError()
 {
@@ -442,7 +444,7 @@ void ShowError()
     ShowHorizontal();
     printf("\t");
 
-    scanf("%d", &aaa);
+    int a=scanf("%d", &aaa);
     Page = 1;
     return;
 }

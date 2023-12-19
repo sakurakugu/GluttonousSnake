@@ -25,7 +25,15 @@ int foodX;
 int foodY;
 int snakeLength; // 用于记录蛇的长度
 char Map[WIDTH][HEIGHT]; // 用于记录地图
-int Speed = 200; // 用于记录当前速度，默认为200
+int initSpeed = 50; // 初始速度
+int SpeedRate = 4; // 倍率
+
+extern int Speed; // 用于记录当前速度，默认为200
+// 用于记录用户的操作键
+extern char up1, down1, left1, right1, up2, down2, left2, right2;
+// 暂停游戏键，重开游戏键，退出游戏键
+extern char pause1, restart1, exit1;
+
 
 // 按时间获取随机数的函数
 int RandTime()

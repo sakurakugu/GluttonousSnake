@@ -32,18 +32,23 @@ extern int User1Exist = 0; // 用户1是否存在
 extern int User2Exist = 0; // 用户2是否存在
 
 // 已确认有用的
-int UserLength1 = 0; // 用户名长度
+int UserLength1 = 0,UserLength2 = 0; // 用户名长度
 extern int len1, len2;   // 用于改变输出时的空格
 extern int InputError; // 输入错误
 extern int UserCount; // 用户数量
 extern int aaa; // 用于scanf的返回值
 extern int RankPage; // 排行榜页数
+extern int Speed; // 用于记录当前速度，默认为200
+extern int len1, len2;   // 用于改变输出时的空格
+extern int SortType;// 排序类型
+extern char up1, down1, left1, right1, up2, down2, left2, right2;// 用于记录用户的操作键
+extern char pause1, restart1, exit1;
 
 // 设置
-extern int SortType; // 排序方式
+int SortType=1; // 排序方式
 
 
-
+/*全部已完成*/
 
 
 
@@ -200,7 +205,7 @@ void ShowLogoutSuccess()
 			Page = 4;// 返回游戏设置页面
 			break;
 		case '0':
-			Page = 1;// 返回游戏设置页面
+			Page = 4;// 返回游戏设置页面
 			return;
 		default:
 			InputError = 1; // 输入错误
@@ -214,7 +219,7 @@ void ShowLogoutSuccess()
 	strcpy(User1.name, "EmptyUser"); // 用户1的用户名为“EmptyUser”
 	User1.score = 0; // 用户1的分数为0
 	User1Exist = 0; // 用户1不存在
-	User2.name[0]='\0'; // 用户2的用户名为“EmptyUser”
+	strcpy(User2.name, "EmptyUser"); // 用户2的用户名为“EmptyUser”
 	User2.score = 0; // 用户2的分数为0
 	User2Exist = 0; // 用户2不存在
 
@@ -250,6 +255,17 @@ int udge(char* name)
 			return 1;
 		}
 	}
+	if(strcmp(User2.name, "EmptyUser") != 0)// 如果用户2存在
+	{
+		for (i = 0; i < MAX_USERS; i++)
+		{
+			if (strcmp(Users[i].name, name) == 0)
+			{
+				User2.score = Users[i].score;
+				return 1;
+			}
+		}
+	}
 	return 0;
 }
 // 用户登录页面控制程序【已完成】
@@ -279,23 +295,199 @@ void UserLogin()
 void ReadGameSave()
 {
 	FILE* GameSave = fopen("GameSave/GameSave.txt", "r");
-	aaa = fscanf(GameSave, "%s %d\n", User1.name, &User1.score);
-	aaa = fscanf(GameSave, "%s %d\n", User2.name, &User2.score);
+	aaa = fscanf(GameSave, "用户1：\n");
+	aaa = fscanf(GameSave, "用户名：       %s\n",User1.name);
+	aaa = fscanf(GameSave, "成  绩：       %d\n", &User1.score);
+	aaa = fscanf(GameSave, "当前速度：     %d\n", &Speed);
+	aaa = fscanf(GameSave, "当前排序方式： %d\n", &SortType);
+	aaa = fscanf(GameSave, "当前按键：     %c %c %c %c\n\n", &up1, &down1, &left1, &right1);
+
+	aaa = fscanf(GameSave, "其他按键：     %c %c %c\n\n",&pause1, &restart1, &exit1);
+
+	aaa = fscanf(GameSave, "用户2：\n");
+	aaa = fscanf(GameSave, "用户名：       %s\n", User2.name);
+	aaa = fscanf(GameSave, "成  绩：       %d\n", &User2.score);
+	aaa = fscanf(GameSave, "当前速度：     %d\n", &Speed);
+	aaa = fscanf(GameSave, "当前排序方式： %d\n", &SortType);
+	aaa = fscanf(GameSave, "当前按键：     %c %c %c %c\n\n", &up2, &down2, &left2, &right2);
 	fclose(GameSave);
 	return;
 }
 // 将当前用户信息写入文件“GameSave.txt”【已完成】
 void InputGameSave()
 {
-	FILE* file = fopen("GameSave\\GameSave.txt", "w");
-	fprintf(file, "%s %d\n%s %d\n",User1.name, User1.score, User2.name, User2.score);
-	fclose(file);
+	FILE* GameSave = fopen("GameSave\\GameSave.txt", "w");
+	fprintf(GameSave, "用户1：\n");
+	fprintf(GameSave, "用户名：       %s\n", User1.name);
+	fprintf(GameSave, "成  绩：       %d\n", User1.score);
+	fprintf(GameSave, "当前速度：     %d\n", Speed);
+	fprintf(GameSave, "当前排序方式： %d\n", SortType);
+	fprintf(GameSave, "当前按键：     %c %c %c %c\n\n", up1, down1, left1, right1);
+
+	fprintf(GameSave, "其他按键：     %c %c %c\n\n", pause1, restart1, exit1);
+
+	fprintf(GameSave, "用户2：\n");
+	fprintf(GameSave, "用户名：       %s\n", User2.name);
+	fprintf(GameSave, "成  绩：       %d\n", User2.score);
+	fprintf(GameSave, "当前速度：     %d\n", Speed);
+	fprintf(GameSave, "当前排序方式： %d\n", SortType);
+	fprintf(GameSave, "当前按键：     %c %c %c %c\n\n", up2, down2, left2, right2);
+
+	fclose(GameSave);
 
 }
 
+/*【用户2登录及注销已完成】*/
+// 输入用户名【已完成】
+void InputUserName2()
+{
+	char str[20] = { 0 };
+	int aaa = scanf("%s", str);
+	UserLength2 = (int)strlen(str);
+	if (UserLength2 == 1)
+	{
+		switch (str[0])
+		{
+		case '0':
+			Page = 4;// 返回游戏设置页面
+			break;
+		default:
+			InputError = 1; // 输入错误
+			break;
+		}
+	}
+	else
+	{
+		strcpy(User2.name, str);
+	}
+
+	return;
+}
+// 是否确认用户名【已完成】
+void ConfirmUserName2()
+{
+	int a;
+	int aaa = scanf("%d", &a);
+	switch (a)
+	{
+	case 0:
+		User2Exist = 0;
+		Page = 4;// 返回游戏设置页面
+		break;
+	case 1:
+		User2Exist = 1;
+		break;
+	default:
+		InputError = 1; // 输入错误
+		break;
+	}
+	return;
+}
+// 展示输入用户名页面【已完成】
+void ShowInputUserName2()
+{
+	system("cls"); // 清屏
+	printf("\n");
+	ShowHorizontal();
+	ShowBlankLine();
+	printf("\t■                       ======用户登录======                        ■\n");
+	ShowBlankLine();
+	printf("\t■                请输入用户2的用户名(小于20个字符)：                ■\n");
+	ShowBlankLine();
+	printf("\t■                        0. 返回上一页面                            ■\n");
+	ShowBlankLine();
+	printf("\t■                      ==按数字键 “0~9” 来选择==                    ■\n");
+	ShowBlankLine();
+	ShowHorizontal();
+	printf("\t");
+
+	return;
+}
+// 展示已输入用户名页面【已完成】
+void ShowInputedUserName2()
+{
+	ChangeLen((int)strlen(User2.name), 8);
+	system("cls"); // 清屏
+	printf("\n");
+	ShowHorizontal();
+	ShowBlankLine();
+	printf("\t■                       ======用户登录======                        ■\n");
+	ShowBlankLine();
+	printf("\t■");
+	for (int i = 0; i < len1; i++)
+	{
+		printf(" ");
+	}
+	printf("用户名：%s", User2.name);
+	for (int i = 0; i < len2; i++)
+	{
+		printf(" ");
+	}
+	printf("■\n");
+	ShowBlankLine();
+	printf("\t■                       请确认用户2的用户名：                       ■\n");
+	ShowBlankLine();
+	printf("\t■                             1. 确认                               ■\n");
+	ShowBlankLine();
+	printf("\t■                             0. 退出                               ■\n");
+	ShowBlankLine();
+	printf("\t■                      ==按数字键 “0~9” 来选择==                    ■\n");
+	ShowBlankLine();
+	ShowHorizontal();
+	printf("\t");
+	return;
+}
+// 展示登录成功页面【已完成】
+void ShowLoginSuccess2()
+{
+	addUser(); // 添加用户
+	HighestScore = Users[0].score; // 更新最高分
+	system("cls"); // 清屏
+	printf("\n");
+	ShowHorizontal();
+	ShowBlankLine();
+	printf("\t■                       ======用户登录======                        ■\n");
+	ShowBlankLine();
+	printf("\t■                           恭喜登录成功                            ■\n");
+	ShowBlankLine();
+	printf("\t■                            0. 继续                                ■\n");
+	ShowBlankLine();
+	printf("\t■                      ==按数字键 “0~9” 来选择==                    ■\n");
+	ShowBlankLine();
+	ShowHorizontal();
+	printf("\t");
+
+	int aaa = scanf("%c", &key);
+	Page = 1;
+	return;
+}
+// 用户2登录页面控制程序【已完成】
+void UserLogin2()
+{
+	ShowInputUserName2(); // 展示输入用户名页面
+	InputUserName2();	// 输入用户名
+	if (Page == 14) { return; }
+	ShowInputedUserName2(); // 展示已输入用户名页面
+	ConfirmUserName2(); // 是否确认用户名
+	if (User2Exist == 1)
+	{
+		udge(User2.name);
+		InputGameSave();
+		ShowLoginSuccess(); // 展示登录成功页面
+	}
+	else
+	{
+		Page = 14;// 返回游戏设置页面
+	}
+
+	int aaa = scanf("%c", &key);
+
+	return;
+}
+
+
 
 /*【排行榜已完成】*/
-
 // 添加用户【已完成】
 void addUser()
 {
@@ -317,7 +509,7 @@ void addUser()
 		}
 	}
 	
-	if(User2.name[0]=='\0')//如果用户2不存在
+	if(strcmp(User2.name,"EmptyUser")==0)//如果用户2不存在
 	{
 		if (UserCount <= MAX_USERS - 2)
 		{
@@ -439,6 +631,7 @@ void ExitGame()
 	addUser();
 	sortUsers();
 	SaveUsers();
+	InputGameSave();
 	exit(0);
 }
 // 展示排行榜头部【已完成】

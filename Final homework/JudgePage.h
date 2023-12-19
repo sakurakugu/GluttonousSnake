@@ -74,8 +74,34 @@ void JudgePage()
 		ShowGameSetting(); // 展示游戏设置
 		GameSettingControl(); // 游戏设置页面控制程序
 		break;
+	case 15:
+		ShowChangeSpeed();
+		ChangeSpeedControl(); // 改变游戏速度页面控制程序
+	case 16:
+		ShowIsChangeSpeed(); // 展示是否改变游戏速度
+		IsChangeSpeedControl(); // 是否改变游戏速度页面控制程序
+		break;
+	case 17:
+		ShowChangeRankingListRule(); // 展示是否改变排行榜规则
+		ChangeRankingListRuleControl(); // 是否改变排行榜规则页面控制程序
+		break;
+	case 18:
+		ShowChangeColor(); // 展示是否改变颜色
+		ChangeColorControl(); // 是否改变颜色页面控制程序
+		break;
+	case 19:
+		ShowChangeKey(); // 展示是否改变按键
+		ChangeKeyControl(); // 是否改变按键页面控制程序
+		break;
+	case 20:
+		ShowResetDefault(); // 展示是否重置默认
+		ResetDefaultControl(); // 是否重置默认页面控制程序
+		break;
+	case 21:
+		UserLogin2(); // 用户登录
+
 	default:
-		
+		InputError = 1; // 输入错误
 		break;
 	}
 	

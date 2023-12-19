@@ -10,16 +10,16 @@ extern int InputError;
 extern int len1, len2;   // 用于改变输出时的空格
 extern User User1, User2; // 用于记录用户信息
 
-// 输入字符
+/*全部已完成*/
+
+// 输入字符【已完成】
 void InputChar()
 {
     int aaa = scanf("%c", &key);
     return;
 }
 
-
-
-// 打印输入错误
+// 打印输入错误【已完成】
 void ShowInputError()
 {
 	printf("输入错误，请重新输入！\n\t");
@@ -27,14 +27,14 @@ void ShowInputError()
 	return;
 }
 
-// 打开游戏存档所在的文件夹
+// 打开游戏存档所在的文件夹【已完成】
 void OpenGameFile()
 {
 	system("explorer.exe .\\GameSave");/*"explorer.exe .\\游戏存档.txt*/
 	return;
 }
 
-// 获取数字的位数
+// 获取数字的位数【已完成】
 int getDigits(int num) {
     int digits = 0;
     if (num == 0) {
@@ -47,7 +47,7 @@ int getDigits(int num) {
     return digits;
 }
 
-// 改变前后输出时的空格
+// 改变前后输出时的空格【已完成】
 void ChangeLen(int a, int b)
 {
     int Len = 67; // 总长度

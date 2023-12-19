@@ -8,15 +8,19 @@
 #include "PageControl.h"    // 页面控制
 #include "JudgePage.h"      // 判断页面
 #include "CommonFun.h"      // 常用函数
+#include "Setting.h"        // 游戏设置
 
 
 #pragma warning(disable:4996)//关闭scanf报错
 
 int main()
 {
+	// 目前只差填写文字部分，还有修改格式，测试有咩有页面返回错误，还有游戏部分
+
 	ReadGameSave(); // 读取游戏存档
 	ReadUsers();    // 读取用户信息
 	HighestScore = Users[0].score; // 更新最高分
+
 	while (1){JudgePage();}
 	
 	return 0;

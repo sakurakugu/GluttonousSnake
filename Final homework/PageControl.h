@@ -10,7 +10,7 @@ extern int InputError;
 extern int RankPage;
 
 
-// 主页面控制程序
+// 主页面控制程序【已完成】
 void HomeControl()
 {
 	InputChar();
@@ -61,7 +61,7 @@ void NewGameControl()
 	return;
 }
 
-// 排行榜页面控制程序
+// 排行榜页面控制程序【已完成】
 void RankingListControl()
 {
 	InputChar();
@@ -83,7 +83,7 @@ break;
 	return;
 }
 
-// 游戏设置页面控制程序
+// 游戏设置页面控制程序【已完成】
 void SettingControl()
 {
 	InputChar();
@@ -114,7 +114,7 @@ void SettingControl()
 	return;
 }
 
-// 关于页面控制程序
+// 关于页面控制程序【已完成】
 void AboutControl()
 {
 	InputChar();
@@ -129,6 +129,9 @@ void AboutControl()
 	}
 	return;
 }
+
+
+
 
 // 单人模式页面控制程序【没写完】
 void SingleModeControl()
