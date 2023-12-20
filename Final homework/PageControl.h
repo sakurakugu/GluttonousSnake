@@ -10,6 +10,7 @@ extern int InputError;
 extern int RankPage;
 
 
+
 // 主页面控制程序【已完成】
 void HomeControl()
 {
@@ -20,16 +21,20 @@ void HomeControl()
 			Page = 2;// 开始新游戏
 			break;
 		case '2':
-			Page = 3;// 排行榜
+			Page = 13;// 游戏规则页面
 			break;
 		case '3':
-			Page = 4;// 游戏设置
+			Page = 3;// 排行榜
 			break;
 		case '4':
-			Page = 5;// 关于
+			Page = 4;// 游戏设置
 			break;
 		case '0':
 			Page = 0;// 退出游戏
+			break;
+		// 这一条是测试用的，用于美化更改页面
+		case '5':
+			Page = 22;// 退出游戏
 			break;
 		default:
 			InputError=1; // 输入错误
@@ -45,10 +50,10 @@ void NewGameControl()
 	switch (key)
 	{
 		case '1':
-			Page = 6;// 单人模式
+			Page = 7;// 贪吃蛇游戏
 			break;
-		case '2':
-			Page = 8;// 双人模式
+		// case '2':
+		// 	Page = 8;// 双人模式
 			break;
 		case '0':
 			Page = 1;// 返回主页面
@@ -96,10 +101,10 @@ void SettingControl()
 			Page = 12;// 用户注销
 			break;
 		case '3':
-			Page = 13;// 打开游戏说明页面
+			Page = 5;// 关于
 			break;
 		case '4':
-			Page = 14;// 打开游戏设置页面
+			Page = 14;// 游戏设置页面
 			break;
 		case '5':
 			OpenGameFile();
@@ -121,7 +126,7 @@ void AboutControl()
 	switch (key)
 	{
 		case '0':
-			Page = 1;// 返回主页面
+			Page = 4;// 返回主页面
 			break;
 		default:
 			InputError = 1; // 输入错误
@@ -133,22 +138,66 @@ void AboutControl()
 
 
 
-// 单人模式页面控制程序【没写完】
-void SingleModeControl()
+// // 单人模式页面控制程序【没写完】
+// void SingleModeControl()
+// {
+// 	InputChar();
+// 	switch (key)
+// 	{
+// 		case '1':
+// 			Page = 7;// 贪吃蛇游戏
+// 			break;
+// 		case '2':
+// 			Page = 7;// 贪吃蛇游戏
+// 			break;
+// 		case '3':
+// 			Page = 7;// 贪吃蛇游戏
+// 			break;
+// 		case '0':
+// 			Page = 2;// 返回开始新游戏页面
+// 			break;
+// 		default:
+// 			InputError = 1; // 输入错误
+// 			break;
+// 	}
+// 	return;
+// }
+// // 双人模式页面控制程序【没写完】
+// void DoubleModeControl()
+// {
+// 	InputChar();
+// 	switch (key)
+// 	{
+// 	case '1':
+// 		Page = 7;// 贪吃蛇游戏
+// 		break;
+// 	case '2':
+// 		Page = 7;// 贪吃蛇游戏
+// 		break;
+// 	case '3':
+// 		Page = 7;// 贪吃蛇游戏
+// 		break;
+// 	case '0':
+// 		Page = 2;// 返回开始新游戏页面
+// 		break;
+// 	default:
+// 		InputError = 1; // 输入错误
+// 		break;
+// 	}
+// 	return;
+// }
+
+
+// 游戏结束控制页面
+void GameEndControl()
 {
 	InputChar();
-	switch (key)
-	{
+	 switch (key)
+	 {
 		case '1':
 			Page = 7;// 贪吃蛇游戏
 			break;
-		case '2':
-			Page = 7;// 贪吃蛇游戏
-			break;
-		case '3':
-			Page = 7;// 贪吃蛇游戏
-			break;
-		case '0':
+	 	case '0':
 			Page = 2;// 返回开始新游戏页面
 			break;
 		default:
@@ -157,29 +206,3 @@ void SingleModeControl()
 	}
 	return;
 }
-
-// 双人模式页面控制程序【没写完】
-void DoubleModeControl()
-{
-	InputChar();
-	switch (key)
-	{
-	case '1':
-		Page = 7;// 贪吃蛇游戏
-		break;
-	case '2':
-		Page = 7;// 贪吃蛇游戏
-		break;
-	case '3':
-		Page = 7;// 贪吃蛇游戏
-		break;
-	case '0':
-		Page = 2;// 返回开始新游戏页面
-		break;
-	default:
-		InputError = 1; // 输入错误
-		break;
-	}
-	return;
-}
-

@@ -10,9 +10,12 @@ int SpeedRate_tmp; // 倍率
 extern int Speed; // 用于记录当前速度，默认为200
 extern int len1, len2;   // 用于改变输出时的空格
 extern int SortType;// 排序类型
-extern char up1, down1, left1, right1, up2, down2, left2, right2;
+extern int useArrowKeys; // 是否选择使用方向键
+extern char up1, down1, left1, right1;
+// extern char up2, down2, left2, right2;
 extern char pause1, restart1, exit1;
-struct User User1，User2; // 用户1和用户2
+struct User User1; // 用户1
+// struct User User2; // 用户2
 
 char color[9] = {"color 07"};// 默认颜色
 
@@ -39,11 +42,11 @@ void GameSettingControl()
         Page = 19;
         break;
     case '5':
-		Page = 21;
-		break;
-    case '6':
 		Page = 20;
 		break;
+    // case '6':
+	// 	Page = 20;
+	// 	break;
     case '0':
         Page = 4;// 返回游戏设置页面
         break;
@@ -55,7 +58,7 @@ void GameSettingControl()
 }
 
 
-// 展示打开游戏设置页面【已完成】
+// 展示游戏设置页面【已完成】
 void ShowGameSetting()
 {
     system("cls"); // 清屏
@@ -72,9 +75,10 @@ void ShowGameSetting()
     printf("\t■                                                                   ■\n");
     printf("\t■           4. 更改按键                                             ■\n");
     printf("\t■                                                                   ■\n");
-    printf("\t■           5. 用户2登录                                            ■\n");
+    // printf("\t■           5. 用户2登录                                            ■\n");
+    // printf("\t■                                                                   ■\n");
+    printf("\t■           5. 恢复默认设置                                         ■\n");
     printf("\t■                                                                   ■\n");
-    printf("\t■           6. 恢复默认设置                                         ■\n");
     printf("\t■                                                                   ■\n");
     printf("\t■                        0. 返回上一页面                            ■\n");
     printf("\t■                                                                   ■\n");
@@ -537,20 +541,40 @@ void ShowChangeKey()
     }
     printf("\t■                                                                   ■\n");
     printf("\t■        用户A：                                                    ■\n");
+    if(useArrowKeys==1)
+    {
+    printf("\t■               1. 向上：向上方向键                                 ■\n");
+    printf("\t■               2. 向下：向下方向键                                 ■\n");
+    printf("\t■               3. 向左：向左方向键                                 ■\n");
+    printf("\t■               4. 向右：向右方向键                                 ■\n");    
+    }
+    else
+    {
     printf("\t■               1. 向上：%c                                          ■\n",up1);
     printf("\t■               2. 向下：%c                                          ■\n",down1);
     printf("\t■               3. 向左：%c                                          ■\n",left1);
     printf("\t■               4. 向右：%c                                          ■\n",right1);
+    }
+
+    // printf("\t■                                                                   ■\n");
+    // printf("\t■        用户B：                                                    ■\n");
+    // printf("\t■               5. 向上：%c                                          ■\n", up2);
+    // printf("\t■               6. 向下：%c                                          ■\n", down2);
+    // printf("\t■               7. 向左：%c                                          ■\n", left2);
+    // printf("\t■               8. 向右：%c                                          ■\n", right2);
     printf("\t■                                                                   ■\n");
-    printf("\t■        用户B：                                                    ■\n");
-    printf("\t■               5. 向上：%c                                          ■\n", up2);
-    printf("\t■               6. 向下：%c                                          ■\n", down2);
-    printf("\t■               7. 向左：%c                                          ■\n", left2);
-    printf("\t■               8. 向右：%c                                          ■\n", right2);
+    printf("\t■               5. 暂停游戏：%c                                      ■\n", pause1);
+    printf("\t■               6. 重开游戏：%c                                      ■\n", restart1);
+    printf("\t■               7. 退出游戏：%c                                      ■\n", exit1);
     printf("\t■                                                                   ■\n");
-    printf("\t■               a. 暂停游戏：%c                                      ■\n", pause1);
-    printf("\t■               b. 重开游戏：%c                                      ■\n", restart1);
-    printf("\t■               c. 退出游戏：%c                                      ■\n", exit1);
+    if(useArrowKeys==1)
+    {
+    printf("\t■                        8. 不使用方向键                            ■\n");
+    }
+    else
+    {
+    printf("\t■                        8. 使用方向键                              ■\n");    
+    }
     printf("\t■                                                                   ■\n");
     printf("\t■                        9. 恢复默认按键                            ■\n");
     printf("\t■                                                                   ■\n");
@@ -610,43 +634,43 @@ void ChangeKeyControl()
         right1 = key;
         IsChangeKey = 2;
 		break;
+    // case '5':
+    //     IsChangeKey = 1;
+    //     system("cls");
+    //     ShowChangeKey();
+    //     aaa = getchar();
+    //     InputChar();
+    //     up2 = key;
+    //     IsChangeKey = 2;
+    //     break;
+    // case '6':
+    //     IsChangeKey = 1;
+    //     system("cls");
+    //     ShowChangeKey();
+    //     aaa = getchar();
+    //     InputChar();
+    //     down2 = key;
+    //     IsChangeKey = 2;
+    //     break;
+    // case '7':
+    //     IsChangeKey = 1;
+    //     system("cls");
+    //     ShowChangeKey();
+    //     aaa = getchar();
+    //     InputChar();
+    //     left2 = key;
+    //     IsChangeKey = 2;
+    //     break;
+    // case '8':
+    //     IsChangeKey = 1;
+    //     system("cls");
+    //     ShowChangeKey();
+    //     aaa=getchar();
+    //     InputChar();
+    //     right2 = key;
+    //     IsChangeKey = 2;
+    //     break;
     case '5':
-        IsChangeKey = 1;
-        system("cls");
-        ShowChangeKey();
-        aaa = getchar();
-        InputChar();
-        up2 = key;
-        IsChangeKey = 2;
-        break;
-    case '6':
-        IsChangeKey = 1;
-        system("cls");
-        ShowChangeKey();
-        aaa = getchar();
-        InputChar();
-        down2 = key;
-        IsChangeKey = 2;
-        break;
-    case '7':
-        IsChangeKey = 1;
-        system("cls");
-        ShowChangeKey();
-        aaa = getchar();
-        InputChar();
-        left2 = key;
-        IsChangeKey = 2;
-        break;
-    case '8':
-        IsChangeKey = 1;
-        system("cls");
-        ShowChangeKey();
-        aaa=getchar();
-        InputChar();
-        right2 = key;
-        IsChangeKey = 2;
-        break;
-    case 'a':
 		IsChangeKey = 1;
 		system("cls");
 		ShowChangeKey();
@@ -655,7 +679,7 @@ void ChangeKeyControl()
 		pause1 = key;
 		IsChangeKey = 2;
 		break;
-    case 'b':
+    case '6':
         IsChangeKey = 1;
         system("cls");
         ShowChangeKey();
@@ -664,7 +688,7 @@ void ChangeKeyControl()
         restart1 = key;
         IsChangeKey = 2;
         break;
-    case 'c':
+    case '7':
         IsChangeKey = 1;
         system("cls");
         ShowChangeKey();
@@ -673,8 +697,14 @@ void ChangeKeyControl()
         exit1 = key;
         IsChangeKey = 2;
         break;
+    case '8':
+        useArrowKeys = !useArrowKeys;
+		system("cls");
+        ShowChangeKey();
     case '9':
-        up1 = 'w', down1 = 's', left1 = 'a', right1 = 'd', up2 = 'i', down2 = 'k', left2 = 'j', right2 = 'l',pause1 = 'p', restart1 = 'r', exit1 = 'x';
+        up1 = 'w', down1 = 's', left1 = 'a', right1 = 'd';
+        // up2 = 'i', down2 = 'k', left2 = 'j', right2 = 'l';
+        pause1 = 'p', restart1 = 'r', exit1 = 'x';
 	default:
         Page = 19; // 展示更改按键页面
 		break;
@@ -719,12 +749,14 @@ void ResetDefaultControl()
 		Page = 14;// 返回游戏设置页面
         strcpy(User1.name, "EmptyUser");
         User1.score=0;
-        strcpy(User2.name, "EmptyUser");
-		User2.score=0;
+        // strcpy(User2.name, "EmptyUser");
+		// User2.score=0;
         Speed = 200;
         SpeedRate = 4;
         SortType = 1;
-        up1 = 'w', down1 = 's', left1 = 'a', right1 = 'd', up2 = 'i', down2 = 'k', left2 = 'j', right2 = 'l',pause1 = 'p', restart1 = 'r', exit1 = 'x';
+        up1 = 'w', down1 = 's', left1 = 'a', right1 = 'd';
+        // up2 = 'i', down2 = 'k', left2 = 'j', right2 = 'l';
+        pause1 = 'p', restart1 = 'r', exit1 = 'x';
 		break;
 	case '2':
 		Page = 14;// 展示是否恢复默认设置页面

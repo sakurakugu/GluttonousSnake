@@ -1,6 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 
+
 #include "GlobalVariable.h" // 全局变量定义
 #include "UserControl.h"    // 用户控制
 #include "GluttonousSnake.h"// 贪吃蛇游戏
@@ -10,13 +11,13 @@
 #include "CommonFun.h"      // 常用函数
 #include "Setting.h"        // 游戏设置
 
-
 #pragma warning(disable:4996)//关闭scanf报错
 
 int main()
 {
-	// 目前只差填写文字部分，还有修改格式，测试有咩有页面返回错误，还有游戏部分
+	// 目前只差填写文字部分，还有修改格式，测试有没有页面返回错误，还有游戏部分
 
+	CheckGameSave(); // 检查游戏存档是否存在
 	ReadGameSave(); // 读取游戏存档
 	ReadUsers();    // 读取用户信息
 	HighestScore = Users[0].score; // 更新最高分

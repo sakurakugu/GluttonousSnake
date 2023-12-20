@@ -11,6 +11,9 @@ int RankPage = 1; // 排名
 
 int Speed = 200; // 用于记录当前速度，默认为200
 // 用于记录用户的操作键
-char up1 = 'w', down1 = 's', left1 = 'a', right1 = 'd', up2 = 'i', down2 = 'k', left2 = 'j', right2 = 'l';
-// 暂停游戏键，重开游戏键，退出游戏键
-char pause1 = 'p', restart1 = 'r', exit1 = 'x';
+char up1 = 'w', down1 = 's', left1 = 'a', right1 = 'd';
+// char up2 = 'i', down2 = 'k', left2 = 'j', right2 = 'l';
+
+char pause1 = 'p', restart1 = 'r', exit1 = 'e'; // 暂停游戏键，重开游戏键，退出游戏键
+
+int useArrowKeys=0; // 是否使用方向键

@@ -8,7 +8,7 @@
 extern int Page;
 extern int InputError;
 extern int User1Exist;
-extern int User2Exist;
+// extern int User2Exist;
 
 //  判断是哪个页面
 void JudgePage()
@@ -38,29 +38,29 @@ void JudgePage()
 		ShowAbout();// 展示关于
 		AboutControl();// 关于页面控制程序
 		break;
-	case 6:
-		ShowSingleMode();// 展示单人模式
-		SingleModeControl();// 单人模式页面控制程序
+	// case 6:
+	// 	ShowSingleMode();// 展示单人模式
+	// 	SingleModeControl();// 单人模式页面控制程序
 		break;
 	case 7:
 		GluttonousSnake();// 贪吃蛇游戏
 		break;
-	case 8:
-		if (User1Exist == User2Exist)// 如果用户1和用户2都存在或者都不存在
-		{
-			ShowDoubleMode();// 展示双人模式
-			DoubleModeControl();// 双人模式页面控制程序
-			break;
-		}
-		// 否则继续执行下面的代码，跳转到第二个用户登录页面
-	case 9:
-		ShowUser2Login();// 展示第二个用户登录页面
-		//User2LoginControl();// 第二个用户登录页面控制程序
-		break;
-	case 10:
-		GluttonousSnake();// 这里先暂时用贪吃蛇游戏代替，因为还没写蛇碰蛇游戏【没写完】
-		// 蛇碰蛇游戏
-		break;
+	// case 8:
+	// 	if (User1Exist == User2Exist)// 如果用户1和用户2都存在或者都不存在
+	// 	{
+	// 		ShowDoubleMode();// 展示双人模式
+	// 		DoubleModeControl();// 双人模式页面控制程序
+	// 		break;
+	// 	}
+	// 	// 否则继续执行下面的代码，跳转到第二个用户登录页面
+	// case 9:
+	// 	ShowUser2Login();// 展示第二个用户登录页面
+	// 	//User2LoginControl();// 第二个用户登录页面控制程序
+	// 	break;
+	// case 10:
+	// 	GluttonousSnake();// 这里先暂时用贪吃蛇游戏代替，因为还没写蛇碰蛇游戏【没写完】
+	// 	// 蛇碰蛇游戏
+	// 	break;
 	case 11:
 		UserLogin(); // 用户登录
 		break;
@@ -98,8 +98,10 @@ void JudgePage()
 		ResetDefaultControl(); // 是否重置默认页面控制程序
 		break;
 	case 21:
-		UserLogin2(); // 用户登录
-
+		// UserLogin2(); // 用户登录
+	case 22:
+		ShowGameEnd(); // 展示游戏结束页面
+		GameEndControl(); //展示游戏结束页面控制程序
 	default:
 		InputError = 1; // 输入错误
 		break;
