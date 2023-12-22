@@ -20,6 +20,7 @@ void JudgePage()
 		break;
 	case 1:
 		ShowHomePage();// 展示主页面
+		InputGameSave();// 输入游戏存档
 		HomeControl();// 主页面控制程序		
 		break;
 	case 2:

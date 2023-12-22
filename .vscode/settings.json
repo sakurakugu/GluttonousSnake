@@ -83,7 +83,15 @@
         "variant": "cpp",
         "stdio.h": "c",
         "string.h": "c",
-        "fcntl.h": "c"
+        "fcntl.h": "c",
+        "globalvariable.h": "c",
+        "usercontrol.h": "c",
+        "gluttonoussnake.h": "c",
+        "showpage.h": "c",
+        "pagecontrol.h": "c",
+        "judgepage.h": "c",
+        "commonfun.h": "c",
+        "setting.h": "c"
     },
 
 }

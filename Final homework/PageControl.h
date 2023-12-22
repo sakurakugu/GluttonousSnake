@@ -33,9 +33,9 @@ void HomeControl()
 			Page = 0;// 退出游戏
 			break;
 		// 这一条是测试用的，用于美化更改页面
-		case '5':
-			Page = 22;// 退出游戏
-			break;
+		// case '5':
+		// 	Page = 22;// 退出游戏
+		// 	break;
 		default:
 			InputError=1; // 输入错误
 			break;

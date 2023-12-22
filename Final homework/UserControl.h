@@ -15,7 +15,6 @@ typedef struct User
 struct User Users[MAX_USERS]; // 用户数组
 struct User User1 = { "EmptyUser", 0 }; // 用户1
 // struct User User2 = { "EmptyUser", 0 }; // 用户2
-
 #include "CommonFun.h"
 #include "ShowPage.h"
 
@@ -35,7 +34,7 @@ extern int User1Exist = 0; // 用户1是否存在
 
 // 已确认有用的
 int UserLength1 = 0; // 用户名长度
-int UserLength2 = 0; 
+// int UserLength2 = 0; 
 extern int len1, len2;   // 用于改变输出时的空格
 extern int InputError; // 输入错误
 extern int UserCount; // 用户数量
@@ -47,6 +46,8 @@ extern char up1, down1, left1, right1;// 用于记录用户的操作键
 // extern char up2, down2, left2, right2;
 extern char pause1, restart1, exit1;
 extern int useArrowKeys; // 是否使用方向键
+char User1Name_tmp[20] = { 0 }; // 用于临时记录用户1的用户名
+extern int SpeedRate; // 用于记录当前速度倍率
 
 // 设置
 int SortType=1; // 排序方式
@@ -77,7 +78,7 @@ void InputUserName()
 	}
 	else
 	{
-		strcpy(User1.name, str);
+		strcpy(User1Name_tmp, str);
 	}
 
 	return;
@@ -90,10 +91,12 @@ void ConfirmUserName()
 	switch (a)
 	{
 	case 0:
+		User1Name_tmp[0] = '\0';
 		User1Exist = 0;
 		Page = 4;// 返回游戏设置页面
 		break;
 	case 1:
+		strcpy(User1.name, User1Name_tmp);
 		User1Exist = 1;
 		break;
 	default:
@@ -125,7 +128,7 @@ void ShowInputUserName()
 // 展示已输入用户名页面【已完成】
 void ShowInputedUserName()
 {
-	ChangeLen((int)strlen(User1.name), 8);
+	ChangeLen((int)strlen(User1Name_tmp), 8);
 	system("cls"); // 清屏
 	printf("\n");
 	ShowHorizontal();
@@ -137,7 +140,7 @@ void ShowInputedUserName()
 	{
 		printf(" ");
 	}
-	printf("用户名：%s", User1.name);
+	printf("用户名：%s", User1Name_tmp);
 	for (int i = 0; i < len2; i++)
 	{
 		printf(" ");
@@ -195,7 +198,7 @@ void ShowLogoutSuccess()
 	ShowBlankLine();
 	printf("\t■                        0. 否   返回上一页面                       ■\n");
 	ShowBlankLine();
-	printf("\t■                      ==按数字键 “0~9” 来选择==                  ■\n");
+	printf("\t■                      ==按数字键 “0~9” 来选择==                    ■\n");
 	ShowBlankLine();
 	ShowHorizontal();
 	printf("\t");
@@ -220,6 +223,7 @@ void ShowLogoutSuccess()
 	sortUsers(); // 排序
 	SaveUsers(); // 保存用户信息
 	HighestScore=Users[0].score; // 更新最高分
+	Score_tmp = 0 ;// 重置当前得分
 	strcpy(User1.name, "EmptyUser"); // 用户1的用户名为“EmptyUser”
 	User1.score = 0; // 用户1的分数为0
 	User1Exist = 0; // 用户1不存在
@@ -237,7 +241,7 @@ void ShowLogoutSuccess()
 	ShowBlankLine();
 	printf("\t■                            0. 继续                                ■\n");
 	ShowBlankLine();
-	printf("\t■                    ==按数字键 “0~9” 来选择==                    ■\n");
+	printf("\t■                    ==按数字键 “0~9” 来选择==                      ■\n");
 	ShowBlankLine();
 	ShowHorizontal();
 	printf("\t");
@@ -302,7 +306,7 @@ void ReadGameSave()
 	aaa = fscanf(GameSave, "用户1：\n");
 	aaa = fscanf(GameSave, "用户名：       %s\n",User1.name);
 	aaa = fscanf(GameSave, "成  绩：       %d\n", &User1.score);
-	aaa = fscanf(GameSave, "当前速度：     %d\n", &Speed);
+	aaa = fscanf(GameSave, "当前速度倍率： %d\n", &SpeedRate);
 	aaa = fscanf(GameSave, "当前排序方式： %d\n", &SortType);
 	aaa = fscanf(GameSave, "当前按键：     %c %c %c %c\n\n", &up1, &down1, &left1, &right1);
 
@@ -325,7 +329,7 @@ void InputGameSave()
 	fprintf(GameSave, "用户1：\n");
 	fprintf(GameSave, "用户名：       %s\n", User1.name);
 	fprintf(GameSave, "成  绩：       %d\n", User1.score);
-	fprintf(GameSave, "当前速度：     %d\n", Speed);
+	fprintf(GameSave, "当前速度倍率： %d\n", SpeedRate);
 	fprintf(GameSave, "当前排序方式： %d\n", SortType);
 	fprintf(GameSave, "当前按键：     %c %c %c %c\n\n", up1, down1, left1, right1);
 
@@ -499,7 +503,7 @@ void CheckGameSave()
 		fprintf(GameSave, "用户1：\n");
 		fprintf(GameSave, "用户名：       EmptyUser\n");
 		fprintf(GameSave, "成  绩：       0\n");
-		fprintf(GameSave, "当前速度：     200\n");
+		fprintf(GameSave, "当前速度倍率： 4\n");
 		fprintf(GameSave, "当前排序方式： 1\n");
 		fprintf(GameSave, "当前按键：     w s a d\n\n");
 

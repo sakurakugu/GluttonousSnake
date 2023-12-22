@@ -7,6 +7,7 @@
 #include <string.h>
 
 #include "CommonFun.h"      // 常用函数
+#include "GlobalVariable.h" // 全局变量
 
 
 struct User User1;
@@ -17,6 +18,7 @@ struct User User1;
 
 extern char key; // 用于接收键盘输入的字符
 int Score = 0; // 用于记录当前得分
+extern Score_tmp; // 用于记录当前得分
 
 // 用于记录蛇的坐标,蛇的长度最大为格子数
 int snakeX[HEIGHT * WIDTH];
@@ -72,8 +74,10 @@ void InputChar_Game()
 {
     if (useArrowKeys)
     {
-        if (_kbhit()) {
+        if (_kbhit())
+        {
             int ch = _getch();
+       
             if (ch == 224) {
                 ch = _getch();
                 switch (ch) {
@@ -85,6 +89,7 @@ void InputChar_Game()
             }
             else
             {
+                key = (char)ch;
                 if(key == pause1) { gamePause = 1; } // 暂停
                 else if (key == restart1) { gameOver = 2; } //重开
                 else if (key == exit1) { gameOver = 0; } //退出
@@ -162,6 +167,11 @@ void OutputMap()
     printf("\t■  用户名：%s  ■  当前得分: %d", User1.name, Score);
     int t = WIDTH - 27 - (int)strlen(User1.name) - getDigits(Score);
     for (int i = 0; i <t; i++) { printf(" "); }
+    printf("■\n\t");
+    for (int j = 0; j < WIDTH; j++) { printf("■"); }
+    if (useArrowKeys) { printf("\n\t■  控制方向：↑ ↓ ← →  暂停：%c 重开：%c 退出：%c", pause1, restart1, exit1); }
+    else{printf("\n\t■  控制方向：%c %c %c %c  暂停：%c 重开：%c 退出：%c", up1, down1, left1, right1, pause1, restart1, exit1);}
+    for (int i = 0; i < WIDTH - 46; i++) { printf(" "); } 
     printf("■\n\t");
     for (int j = 0; j < WIDTH; j++) { printf("■"); }
     printf("\t"); // 保持输入位置与地图对齐
@@ -269,6 +279,7 @@ int GluttonousSnake()
         else { printf("\n\t游戏已暂停，按任意键继续"); }
         Sleep(Speed); // 蛇移动的速度
     }
+    Score_tmp=Score;
     if (HighestScore < Score){HighestScore = Score;}
     if (User1.score < Score) { User1.score = Score; }
     if (gameOver == 2) { Page = 7; }else { Page = 22; }

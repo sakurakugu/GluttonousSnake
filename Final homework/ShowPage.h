@@ -3,6 +3,7 @@
 
 
 extern int HighestScore; // 最高得分
+extern int Score_tmp;        // 当前得分
 extern User User1; // 用户1
 extern int len1, len2;   // 用于改变输出时的空格
 extern int aaa;
@@ -71,10 +72,21 @@ void ShowNewGame()
     printf("\t■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■\n");
     printf("\t■                                                                   ■\n");
     printf("\t■                      ========新的游戏========                     ■\n");
-    printf("\t■                                                                   ■\n");
-    printf("\t■                                                                   ■\n");
-    printf("\t■                              最高得分：%d                         ■\n", HighestScore);
-    printf("\t■                                                                   ■\n");
+    ShowBlankLine();
+    printf("\t■");
+    ChangeLen(10, getDigits(HighestScore));// 10是“最高得分：”的长度
+    for (int i = 0; i < len1; i++) { printf(" "); }
+    printf("最高得分：%d", HighestScore);
+    for (int i = 0; i < len2; i++) { printf(" "); }
+    printf("■\n");
+    ShowBlankLine();
+    printf("\t■");
+    ChangeLen(10, getDigits(Score_tmp));// 10是“当前得分：”的长度
+    for (int i = 0; i < len1; i++) { printf(" "); }
+    printf("当前得分：%d", Score_tmp);
+    for (int i = 0; i < len2; i++) { printf(" "); }
+    printf("■\n");
+    ShowBlankLine();
     printf("\t■                                                                   ■\n");
     printf("\t■                        1. 贪吃蛇（单人模式）                      ■\n");
     printf("\t■                                                                   ■\n");
@@ -85,9 +97,10 @@ void ShowNewGame()
     printf("\t■                                                                   ■\n");
     printf("\t■                                                                   ■\n");
     printf("\t■                                                                   ■\n");
+    printf("\t■                                                                   ■\n");
     printf("\t■                        0. 返回上一页面                            ■\n");
     printf("\t■                                                                   ■\n");
-    printf("\t■                      ==按数字键 “0~9” 来选择==                  ■\n");
+    printf("\t■                      ==按数字键 “0~9” 来选择==                    ■\n");
     printf("\t■                                                                   ■\n");
     printf("\t■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■\n");
     printf("\t");
@@ -106,9 +119,14 @@ void ShowSetting()
     printf("\t■                                                                   ■\n");
     printf("\t■                      ==========设置==========                     ■\n");
     printf("\t■                                                                   ■\n");
-    printf("\t■                              当前用户：                           ■\n");
+    printf("\t■");
+    ChangeLen(8, (int)strlen(User1.name)); // 8是“用户名：”的长度
+    for (int i = 0; i < len1; i++) { printf(" "); }
+    printf("用户名：%s", User1.name);
+    for (int i = 0; i < len2; i++) { printf(" "); }
+    printf("■\n");
     printf("\t■                                                                   ■\n");
-    printf("\t■                        1. 用户登录                                ■\n");
+    printf("\t■                        1. 用户登录（用户名更改）                  ■\n");
     printf("\t■                                                                   ■\n");
     printf("\t■                        2. 用户注销                                ■\n");
     printf("\t■                                                                   ■\n");
@@ -140,7 +158,7 @@ void ShowAbout()
     printf("\t■                         ======关于======                          ■\n");
     ShowBlankLine();
     printf("\t■               当前游戏创建时间 2023年12月16日 14:30               ■\n");
-    printf("\t■               当前游戏结束时间 2023年12月16日 14:30               ■\n");
+    printf("\t■               当前游戏结束时间 2023年12月22日 11:40               ■\n");
     printf("\t■                                                                   ■\n");
     printf("\t■     目前已上传到 https://github.com/sakurakugu/GluttonousSnake    ■\n");
     printf("\t■                                                                   ■\n");
@@ -286,13 +304,15 @@ void ShowGameInstructions()
     printf("\t■                                                                   ■\n");
     printf("\t■                       ======游戏规则======                        ■\n");
     printf("\t■                                                                   ■\n");
-    printf("\t■                                                     ■\n");
+    printf("\t■     贪吃蛇的游戏规则：                                            ■\n");
+    printf("\t■         通过控制蛇的方向，去吃食物，以获得更长的身体，            ■\n");
+    printf("\t■         看看可以获得多少分                                        ■\n");
     printf("\t■                                                                   ■\n");
     printf("\t■                                                                   ■\n");
     printf("\t■                                                                   ■\n");
     printf("\t■                                                                   ■\n");
     printf("\t■                                                                   ■\n");
-    printf("\t■     ：                                                ■\n");
+    printf("\t■                                                                   ■\n");
     printf("\t■                                                                   ■\n");
     printf("\t■                                                                   ■\n");
     printf("\t■                                                                   ■\n");
@@ -300,7 +320,7 @@ void ShowGameInstructions()
     printf("\t■                                                                   ■\n");
     printf("\t■                        0. 返回上一页面                            ■\n");
     printf("\t■                                                                   ■\n");
-    printf("\t■                      ==按数字键 “0~9” 来选择==                  ■\n");
+    printf("\t■                      ==按数字键 “0~9” 来选择==                    ■\n");
     printf("\t■                                                                   ■\n");
     printf("\t■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■\n");
     printf("\t");
@@ -314,24 +334,25 @@ void ShowGameInstructions()
 // 展示游戏结束页面
 void ShowGameEnd()
 {
+    // 这里使用vscode打开才是正确的
 	system("cls"); // 清屏
     printf("\n");
     printf("\t■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■\n");
     printf("\t■                                                                   ■\n");
     printf("\t■                        ======最终结果======                       ■\n");
-    printf("\t■          ■■■■     ■■        ■  ■      ■■■■           ■\n");
-    printf("\t■          ■  ■    ■  ■     ■  ■  ■    ■                 ■\n");
-    printf("\t■          ■       ■  ■    ■  ■  ■    ■                 ■\n");
-    printf("\t■          ■ ■■    ■■■■    ■  ■  ■    ■■■             ■\n");
-    printf("\t■          ■  ■    ■  ■    ■  ■  ■    ■                 ■\n");
-    printf("\t■          ■■■■    ■  ■    ■  ■  ■    ■■■■           ■\n");
+    printf("\t■         ■■■■■■          ■■         ■■   ■■        ■■■■■           ■\n");
+    printf("\t■         ■    ■         ■  ■       ■   ■   ■       ■               ■\n");
+    printf("\t■         ■             ■    ■      ■   ■   ■       ■               ■\n");
+    printf("\t■         ■   ■■        ■■■■■■      ■   ■   ■       ■■■■■           ■\n");
+    printf("\t■         ■    ■        ■    ■      ■   ■   ■       ■               ■\n");
+    printf("\t■         ■■■■■■        ■    ■      ■   ■   ■       ■■■■■           ■\n");
     printf("\t■                                                                   ■\n");// 贪吃蛇没有GameWin
-    printf("\t■          ■■■■    ■    ■     ■■■■     ■■■             ■\n");
-    printf("\t■          ■    ■    ■    ■     ■           ■    ■           ■\n");
-    printf("\t■          ■    ■    ■    ■     ■           ■    ■           ■\n");
-    printf("\t■          ■    ■     ■  ■      ■■■       ■■■             ■\n");
-    printf("\t■          ■    ■     ■  ■      ■           ■   ■            ■\n");
-    printf("\t■          ■■■■       ■        ■■■■     ■    ■           ■\n");
+    printf("\t■         ■■■■■■        ■    ■        ■■■■■         ■■■■            ■\n");
+    printf("\t■         ■    ■        ■    ■        ■             ■    ■          ■\n");
+    printf("\t■         ■    ■        ■    ■        ■             ■    ■          ■\n");
+    printf("\t■         ■    ■         ■  ■         ■■■■■         ■■■■            ■\n");
+    printf("\t■         ■    ■         ■  ■         ■             ■   ■           ■\n");
+    printf("\t■         ■■■■■■          ■■          ■■■■■         ■    ■          ■\n");
     printf("\t■                                                                   ■\n");
     ShowBlankLine();
     printf("\t■");
@@ -343,7 +364,7 @@ void ShowGameEnd()
     printf("\t■                                                                   ■\n");
     printf("\t■             1. 再来一局              0. 返回上一页面              ■\n");
     printf("\t■                                                                   ■\n");
-    printf("\t■                   ==按数字键 “0~9” 来选择==                     ■\n");
+    printf("\t■                   ==按数字键 “0~9” 来选择==                       ■\n");
     printf("\t■                                                                   ■\n");
     printf("\t■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■\n");
     printf("\t");
@@ -364,7 +385,7 @@ void ShowIsChange()
     printf("\t■                                                                   ■\n");
     printf("\t■                                                                   ■\n");
     printf("\t■                                                                   ■\n");
-	printf("\t■                        是否更改：                                 ■\n");
+	printf("\t■                        是否确认更改：                             ■\n");
 	printf("\t■                                                                   ■\n");
     printf("\t■                                                                   ■\n");
 	printf("\t■                        1. 是   更改                               ■\n");

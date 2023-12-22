@@ -6,7 +6,7 @@
 #include "ShowPage.h"
 extern int initSpeed; // 初始速度
 extern int SpeedRate; // 倍率
-int SpeedRate_tmp; // 倍率
+int SpeedRate_tmp; // 用于记录更改时的速度的倍率
 extern int Speed; // 用于记录当前速度，默认为200
 extern int len1, len2;   // 用于改变输出时的空格
 extern int SortType;// 排序类型
@@ -283,18 +283,25 @@ void ShowChangeRankingListRule()
     }
     else
     {
-        printf("\t■                当前排行榜排序规则为：不稳定排序                   ■\n");
+        printf("\t■                 当前排行榜排序规则为：不稳定排序                  ■\n");
     }
     printf("\t■                                                                   ■\n");
     printf("\t■             （稳定排序：相同分数下，用户名顺序不会改变）          ■\n");
     printf("\t■                                                                   ■\n");
     printf("\t■             （不稳定排序：相同分数下，用户名顺序会改变）          ■\n");
     printf("\t■                                                                   ■\n");
-    printf("\t■                        1. 更改为稳定排序                          ■\n");
+    if(SortType==1)
+	{
+		printf("\t■                        1. 更改为不稳定排序                        ■\n");
+	}
+	else
+	{
+		printf("\t■                        1. 更改为稳定排序                          ■\n");
+	}
     printf("\t■                                                                   ■\n");
-    printf("\t■                        2. 更改为不稳定排序                        ■\n");
+    printf("\t■                        2. 跳转到排行榜页面                        ■\n");
     printf("\t■                                                                   ■\n");
-    printf("\t■                        3. 跳转到排行榜页面                        ■\n");
+    printf("\t■                                                                   ■\n");
     printf("\t■                                                                   ■\n");
     printf("\t■                        0. 返回上一页面                            ■\n");
     printf("\t■                                                                   ■\n");
@@ -312,15 +319,10 @@ void ChangeRankingListRuleControl()
     switch (key)
     {
     case '1':
-        SortType = 1;// 更改为不稳定排序
-        Page = 14;
+        SortType = !SortType;// 更改为稳或不稳定排序
         break;
     case '2':
-        SortType = 2;// 更改为稳定排序
-        Page = 14;
-        break;
-    case '3':
-        Page = 3;// 跳转到排行榜页面
+        Page = 3;
         break;
     case '0':
         Page = 14;// 返回游戏设置页面
@@ -539,8 +541,8 @@ void ShowChangeKey()
     {
     printf("\t■                                                                   ■\n");
     }
-    printf("\t■                                                                   ■\n");
-    printf("\t■        用户A：                                                    ■\n");
+    // printf("\t■                                                                   ■\n");
+    // printf("\t■        用户A：                                                    ■\n");
     if(useArrowKeys==1)
     {
     printf("\t■               1. 向上：向上方向键                                 ■\n");
@@ -563,7 +565,14 @@ void ShowChangeKey()
     // printf("\t■               7. 向左：%c                                          ■\n", left2);
     // printf("\t■               8. 向右：%c                                          ■\n", right2);
     printf("\t■                                                                   ■\n");
-    printf("\t■               5. 暂停游戏：%c                                      ■\n", pause1);
+    if (pause1 == 32)
+    {
+        printf("\t■               5. 暂停游戏：空格                                   ■\n");
+    }
+    else
+    {
+        printf("\t■               5. 暂停游戏：%c                                      ■\n", pause1);
+    }
     printf("\t■               6. 重开游戏：%c                                      ■\n", restart1);
     printf("\t■               7. 退出游戏：%c                                      ■\n", exit1);
     printf("\t■                                                                   ■\n");
@@ -701,10 +710,12 @@ void ChangeKeyControl()
         useArrowKeys = !useArrowKeys;
 		system("cls");
         ShowChangeKey();
+        break;
     case '9':
         up1 = 'w', down1 = 's', left1 = 'a', right1 = 'd';
         // up2 = 'i', down2 = 'k', left2 = 'j', right2 = 'l';
         pause1 = 'p', restart1 = 'r', exit1 = 'x';
+        useArrowKeys = 0;
 	default:
         Page = 19; // 展示更改按键页面
 		break;
@@ -757,6 +768,8 @@ void ResetDefaultControl()
         up1 = 'w', down1 = 's', left1 = 'a', right1 = 'd';
         // up2 = 'i', down2 = 'k', left2 = 'j', right2 = 'l';
         pause1 = 'p', restart1 = 'r', exit1 = 'x';
+        useArrowKeys = 0;
+        Score_tmp = 0;// 重置当前得分
 		break;
 	case '2':
 		Page = 14;// 展示是否恢复默认设置页面

@@ -8,6 +8,8 @@ int InputError = 0; // 用于表示是否输入错误
 int aaa = 0; // 不加天天警告返回值没用到
 int UserCount = 0; // 用户数量
 int RankPage = 1; // 排名
+int Score_tmp=0;  // 用于记录当前得分
+int SpeedRate; // 用于记录当前速度倍率
 
 int Speed = 200; // 用于记录当前速度，默认为200
 // 用于记录用户的操作键
